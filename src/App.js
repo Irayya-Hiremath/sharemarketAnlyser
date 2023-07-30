@@ -246,7 +246,7 @@ const App = () => {
         <Grid item xs={12} md={6} lg={6} xl={6}>
           <Card sx={{backgroundColor:'gray'}}>
             <TableContainer component={Paper} >
-              <Table height={400} >
+              <Table  sx={{height:{sm:400,md:400,lg:400} }} >
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}  >Time Frame</TableCell>
