@@ -246,15 +246,16 @@ const App = () => {
         <Grid item xs={12} md={6} lg={6} xl={6}>
           <Card sx={{backgroundColor:'gray'}}>
             <TableContainer component={Paper} >
-              <Table height={400}>
+              <Table height={400} >
                 <TableHead>
                   <TableRow>
-                    <TableCell>Time Frame</TableCell>
+                    <TableCell sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}  >Time Frame</TableCell>
                     {dummyData.map((stock) => (
-                      <TableCell key={stock.name} align="right">
+                      <TableCell sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }} key={stock.name} align="right">
                         <Button
                           variant="contained"
                           size="small"
+                          sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}
                           onClick={() => handleStockClick(stock.name)}
                         >
                           {stock.name}
@@ -266,9 +267,9 @@ const App = () => {
                 <TableBody>
                   {timeFrames.map((timeFrame) => (
                     <TableRow key={timeFrame}>
-                      <TableCell>{timeFrame}</TableCell>
+                      <TableCell sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}>{timeFrame}</TableCell>
                       {dummyData.map((stock) => (
-                        <TableCell key={stock.name} align="right">
+                        <TableCell sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }} key={stock.name} align="right">
                           {stock[timeFrame.toLowerCase()]}
                         </TableCell>
                       ))}
@@ -312,6 +313,7 @@ const App = () => {
               layout="vertical"
               width={500}
               height={400}
+              sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}
               data={[dummyData.find((stock) => stock.name === selectedStock)]}
             >
               <XAxis type="number" />
@@ -321,6 +323,7 @@ const App = () => {
               <Legend />
               {timeFrames.map((timeFrame, index) => (
                 <Bar
+                sx={{fontSize:{xs:8,sm:14,md:14,lg:14} }}
                   key={timeFrame}
                   dataKey={timeFrame.toLowerCase()}
                   fill={colors[index]}
