@@ -362,11 +362,16 @@
 import StockChart from './Components/StockChart'
 const App = () => {
 
-  
+  const fixedData = [
+    { name: 'SPY', Day: 2, Week: 4, Month: 6, YearToDate: 22, Year: 25 },
+    { name: 'QQQ', Day: 3, Week: 5, Month: 8, YearToDate: 28, Year: 20 },
+    { name: 'SECTOR', Day: 3, Week: 5, Month: 20, YearToDate: -15, Year: 22 },
+  ];
 
   
   return (
-    <StockChart/>
+    <><StockChart />
+    </> 
   );
 };
 

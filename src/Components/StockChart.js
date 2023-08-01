@@ -102,12 +102,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid,LabelList } from 'recharts';
 
 
 const fixedData = [
-  { name: 'SPY', Day: 2, Week: 4, Month: 6, YearToDate: 22, Year: 25 },
-  { name: 'QQQ', Day: 3, Week: 5, Month: 8, YearToDate: 28, Year: 20 },
+  { name: 'SPY', Day: 2, Week: 4, Month: 6, YearToDate: 22, Year: -25 },
+  { name: 'QQQ', Day: 3, Week: 5, Month: 8, YearToDate: -28, Year: 20 },
   { name: 'SECTOR', Day: 3, Week: 5, Month: 20, YearToDate: -15, Year: 22 },
 ];
 
@@ -118,10 +118,10 @@ const stocksData = [
   { name: 'MSFT', Day: 6, Week: 9, Month: 16, YearToDate: 25, Year: 30 },
   { name: 'TSLA', Day: 15, Week: 20, Month: 25, YearToDate: 30, Year: 35 },
   { name: 'NVDA', Day: 12, Week: 15, Month: 22, YearToDate: 28, Year: 25 },
-  { name: 'BABA', Day: 18, Week: 25, Month: 30, YearToDate: 35, Year: 40 },
+  { name: 'BABA', Day: 18, Week: 25, Month: 30, YearToDate: 35, Year: -40 },
   { name: 'NFLX', Day: 9, Week: 13, Month: 17, YearToDate: 15, Year: 12 },
   { name: 'JPM', Day: 7, Week: 10, Month: 12, YearToDate: 5, Year: 8 },
-  { name: 'V', Day: 22, Week: 28, Month: 32, YearToDate: 38, Year: 40 },
+  { name: 'V', Day: 22, Week: 28, Month: 32, YearToDate: -38, Year: 40 },
   { name: 'MA', Day: 20, Week: 26, Month: 30, YearToDate: 35, Year: 42 },
   { name: 'PG', Day: 2, Week: 3, Month: 5, YearToDate: 8, Year: 10 },
   { name: 'KO', Day: 4, Week: 6, Month: 10, YearToDate: 12, Year: 15 },
@@ -129,14 +129,14 @@ const stocksData = [
   { name: 'PEP', Day: 6, Week: 8, Month: 12, YearToDate: 15, Year: 18 },
   { name: 'WMT', Day: 8, Week: 12, Month: 15, YearToDate: 20, Year: 25 },
 ];
-
 const StockChart = () => {
-  const [selectedStock, setSelectedStock] = useState(null);
 
+  const [selectedStock, setSelectedStock] = useState(null);
+const barArr=[selectedStock, ...fixedData]
   const handleStockChange = (_, newValue) => {
     setSelectedStock(newValue);
   };
-//   const timeFrames = ["Day", "Week", "Month", "YearToDate", "Year"];
+  const timeFrames = ["Day", "Week", "Month", "YearToDate", "Year"];
 // const colors = ["#8884d8", "#82ca9d", "#ffc658", "#ca82aa", "#82caaa"];
   return (
     <Box sx={{height:'100vh',overflow:"hidden"}}>
@@ -229,16 +229,32 @@ const StockChart = () => {
           {selectedStock && (
 
 
-          <BarChart width={600} height={400} data={[selectedStock, ...fixedData]}>
-            <CartesianGrid strokeDasharray="3" />
-            <XAxis dataKey="name" />
+              
+          <BarChart layout="vertical" width={600} height={400} data={[selectedStock, ...fixedData]}>
+            {/* <CartesianGrid strokeDasharray="3" /> */}
+            {/* <XAxis dataKey="name" /> */}
             
-            <YAxis>
+            {/* <YAxis> */}
               {/* <Label value="Values" position="insideLeft" angle={-90} offset={0} /> */}
-            </YAxis>
+            {/* </YAxis> */}
             {/* <Tooltip /> */}
+            <XAxis type="number" />  
+            {/* {timeFrames.map((el)=>{
+              return(
+                <YAxis dataKey={el} type="category" />
+
+              )
+            })}   
+                     */}
+                     
+            <YAxis dataKey='name' type="category" />
             <Legend />
-            <Bar dataKey="Day" fill="#8884d8" />
+            {/* {barArr.map((el)=>{
+              return(
+                
+              )
+            })} */}
+            <Bar dataKey="Day" fill="#8884d8" ></Bar>
             <Bar dataKey="Week" fill="#82ca9d" />
             <Bar dataKey="Month" fill="#ffc658" />
             <Bar dataKey="YearToDate" fill="#ca82ca" />
